@@ -10,6 +10,7 @@ public class gameManager : MonoBehaviour
     public playerManager checkLife;
 
     public string sceneGame;
+    public string mainMenuScene;
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +41,17 @@ public class gameManager : MonoBehaviour
     }
 
     public void RestartGame()
-    {
-        
+    {    
         SceneManager.LoadScene(sceneGame);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(mainMenuScene);
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
     }
 }
