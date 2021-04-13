@@ -6,6 +6,7 @@ public class deplacement : MonoBehaviour
 {
     public GameObject player;
     public float speed;
+    
     public GameObject cam;
     public GameObject[] repaires;
 
@@ -16,13 +17,27 @@ public class deplacement : MonoBehaviour
     public bool inZoneLeft;
     public bool moveCam;
 
+    private bool top = false;
+    private bool bot = false;
+    private bool left = false;
+    private bool right = true;
+
+    public float speedDash;
+    public float resetDash;
+
+
+    private float timeDash = 0;
+    private float timeDashReset = 0;
+    public bool dash = true;
+    public bool startDash;
+    private bool endDash = false;
     private Vector2 ligneTop;
     private Vector2 ligneLeft;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //dash = true;
     }
 
     // Update is called once per frame
@@ -31,33 +46,67 @@ public class deplacement : MonoBehaviour
         StayHere();
         Move();
         CamMove();
-        if (Input.GetMouseButtonDown(0))
-            Instantiate(bullet, player.transform.position, Quaternion.identity);
-            
+        NewDash();
+        Dash();
+
+        if (Time.timeScale == 1)
+        {
+            if (Input.GetMouseButtonDown(0))
+                Instantiate(bullet, player.transform.position, Quaternion.identity);
+        }
     }
 
     public void Move()
     {
+        timeDash += Time.deltaTime;
+
         if(inZoneTop)
         {
             if (Input.GetKey(KeyCode.Z))
+            {
                 player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + (speed * Time.deltaTime));
+                left = false;
+                right = false;
+                top = true;
+                bot = false;
+            }
+                
         }
         
-
         if (Input.GetKey(KeyCode.D))
+        {
             player.transform.position = new Vector2(player.transform.position.x + (speed * Time.deltaTime), player.transform.position.y);
+            left = false;
+            right = true;
+            top = false;
+            bot = false;
+        }
+            
 
         if (inZoneBot)
         {
             if (Input.GetKey(KeyCode.S))
+            {
                 player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y - (speed * Time.deltaTime));
+                left = false;
+                right = false;
+                top = false;
+                bot = true;
+            }
+                
         }
 
         if(inZoneLeft)
         {
             if(Input.GetKey(KeyCode.Q))
+            {
                 player.transform.position = new Vector2(player.transform.position.x - (speed * Time.deltaTime), player.transform.position.y);
+                left = true;
+                right = false;
+                top = false;
+                bot = false;
+            }
+                
         }
         
     }
@@ -99,4 +148,64 @@ public class deplacement : MonoBehaviour
             }
         }
     }
+
+    public void NewDash()
+    {
+        if(!dash)
+        {
+            timeDashReset += Time.deltaTime;
+            if(timeDashReset>=resetDash)
+            {
+                timeDashReset = 0;
+                dash = true;
+            }
+        }
+    }
+    public void Dash()
+    {
+        if (dash)
+        {
+            timeDash += Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space))
+                startDash = true;
+
+            if (startDash)
+            {
+                if (inZoneLeft)
+                {
+                    if (left)
+                        player.transform.position = new Vector2(player.transform.position.x - (speedDash * Time.deltaTime), player.transform.position.y);
+                }
+
+                if (right)
+                    player.transform.position = new Vector2(player.transform.position.x + (speedDash * Time.deltaTime), player.transform.position.y);
+
+                if (inZoneTop)
+                {
+                    if (top)
+                        player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + (speedDash * Time.deltaTime));
+                }
+
+                if (inZoneBot)
+                {
+                    if (bot)
+                        player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y - (speedDash * Time.deltaTime));
+                }
+
+                if (timeDash > 0.3f)
+                {
+                    dash = false;
+                    startDash = false;
+                }
+            }
+            else
+            {
+                timeDash = 0;
+                endDash = true;
+                //startDash = false;
+            }
+                           
+        }
+    }
 }
+
