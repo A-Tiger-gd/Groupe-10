@@ -5,6 +5,7 @@ using UnityEngine;
 public class enemie : MonoBehaviour
 {
     public GameObject[] repaires;
+    public GameObject bulletEnemie;
 
     public float speed;
     public float speedLeft;
@@ -14,19 +15,26 @@ public class enemie : MonoBehaviour
 
     public int direction;
     public float reset;
+    public float timeMaxShoot;
     private float timeReset;
+    private float timeShoot;
+    private float timeShootSet;
+    private GameObject player;
+    public bool back;
 
     private Vector2 ligneTop;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
+        timeShoot = Random.Range(1f, timeMaxShoot);
     }
 
     // Update is called once per frame
     void Update()
     {
+        ShootEnemie();
         EnemiesInZone();
         EnemieMovement();
     }
@@ -48,25 +56,37 @@ public class enemie : MonoBehaviour
     
     public void EnemieMovement ()
     {
-        transform.position = new Vector2(transform.position.x - (speedLeft * Time.deltaTime), transform.position.y);
+        
 
         if(timeReset >= reset)
         {
-            direction = (int) Random.Range(0,3);
+            direction = (int) Random.Range(0,4);
             timeReset = 0;
         }
 
-        timeReset += Time.deltaTime; 
+        timeReset += Time.deltaTime;
 
-        if (direction == 0 && inZoneTop)
+        if (Vector2.Dot(repaires[0].transform.position + new Vector3(transform.position.x, repaires[0].transform.position.y), new Vector2(transform.position.x, transform.position.y) - new Vector2(player.transform.position.x, repaires[0].transform.position.y)) < 0)// && Vector2.Dot(repaires[0].transform.position - new Vector3(transform.position.x, repaires[0].transform.position.y), new Vector2(transform.position.x, transform.position.y) - new Vector2(repaires[0].transform.position.x, repaires[0].transform.position.y)) > 0)
         {
-            transform.position = new Vector2(transform.position.x , transform.position.y + (speed * Time.deltaTime));
+            back = true;
+            transform.position = new Vector2(transform.position.x + (speedLeft*2 * Time.deltaTime), transform.position.y);
         }
+        else
+            back = false;
 
-        if (direction == 1 && inZoneBot)
-        {
+        if (direction == 0 && inZoneTop )
+            transform.position = new Vector2(transform.position.x, transform.position.y + (speed * Time.deltaTime));
+
+        if (direction == 1 && inZoneBot )
             transform.position = new Vector2(transform.position.x, transform.position.y - (speed * Time.deltaTime));
-        }
+        
+        if(direction == 2 && !back)// || Vector2.Dot(repaires[0].transform.position - new Vector3(transform.position.x, repaires[0].transform.position.y), new Vector2(transform.position.x, transform.position.y) - new Vector2(repaires[0].transform.position.x, repaires[0].transform.position.y)) > 0 )
+            transform.position = new Vector2(transform.position.x - (speedLeft * Time.deltaTime), transform.position.y);
+
+        /*if(direction == 3 && !back/*&& Vector2.Dot(repaires[0].transform.position - new Vector3(transform.position.x, repaires[0].transform.position.y), new Vector2(transform.position.x, transform.position.y) - new Vector2(player.transform.position.x, repaires[0].transform.position.y)) > 0)
+            transform.position = new Vector2(transform.position.x + (speedLeft * Time.deltaTime), transform.position.y);*/
+
+
 
     }
 
@@ -77,6 +97,19 @@ public class enemie : MonoBehaviour
             
             Destroy(col.gameObject);
             Destroy(this.gameObject);   
+        }
+    }
+
+    public void ShootEnemie()
+    {
+        
+        timeShootSet += Time.deltaTime;
+
+        if(timeShootSet>=timeShoot)
+        {
+            Instantiate(bulletEnemie, transform.position, Quaternion.identity);
+            timeShoot = Random.Range(1f, timeMaxShoot);
+            timeShootSet = 0;
         }
     }
 }

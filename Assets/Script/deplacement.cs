@@ -30,7 +30,7 @@ public class deplacement : MonoBehaviour
     private float timeDash = 0;
     private float timeDashReset = 0;
     private bool dash = true;
-    private bool startDash;
+    public bool startDash;
     private bool endDash = false;
     private Vector2 ligneTop;
     private Vector2 ligneLeft;
