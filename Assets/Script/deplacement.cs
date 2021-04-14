@@ -9,27 +9,28 @@ public class deplacement : MonoBehaviour
     
     public GameObject cam;
     public GameObject[] repaires;
+    public GameObject winRepaire;
 
     public GameObject bullet;
+    public GameObject winPanel;
 
-    public bool inZoneTop;
-    public bool inZoneBot;
-    public bool inZoneLeft;
-    public bool moveCam;
+    public float speedDash;
+    public float resetDash;
+
+    private bool inZoneTop;
+    private bool inZoneBot;
+    private bool inZoneLeft;
+    private bool moveCam;
 
     private bool top = false;
     private bool bot = false;
     private bool left = false;
     private bool right = true;
 
-    public float speedDash;
-    public float resetDash;
-
-
     private float timeDash = 0;
     private float timeDashReset = 0;
-    public bool dash = true;
-    public bool startDash;
+    private bool dash = true;
+    private bool startDash;
     private bool endDash = false;
     private Vector2 ligneTop;
     private Vector2 ligneLeft;
@@ -43,12 +44,13 @@ public class deplacement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        YouAreWin();
         StayHere();
         Move();
         CamMove();
         NewDash();
         Dash();
-
+        
         if (Time.timeScale == 1)
         {
             if (Input.GetMouseButtonDown(0))
@@ -205,6 +207,15 @@ public class deplacement : MonoBehaviour
                 //startDash = false;
             }
                            
+        }
+    }
+
+    public void YouAreWin()
+    {
+        if (Vector2.Dot(ligneLeft, new Vector2(player.transform.position.x, player.transform.position.y) - new Vector2(winRepaire.transform.position.x, winRepaire.transform.position.y)) < 0)
+        {
+            Time.timeScale = 0;
+            winPanel.SetActive(true);
         }
     }
 }
