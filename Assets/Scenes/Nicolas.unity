@@ -294,8 +294,8 @@ MonoBehaviour:
   lifeMax: 3
   life: 3
   resource: 0
-  timeLifeUp: 2000
-  timeSheeld: 100000
+  timeLifeUp: 1
+  timeSheeld: 1
   deadPanel: {fileID: 1356108895}
   cam: {fileID: 519420028}
   feedBackLife:

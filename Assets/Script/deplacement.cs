@@ -163,6 +163,7 @@ public class deplacement : MonoBehaviour
             }
         }
     }
+
     public void Dash()
     {
         if (dash)

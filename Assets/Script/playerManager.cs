@@ -17,9 +17,12 @@ public class playerManager : MonoBehaviour
 
     private bool sheeld;
     private bool lifeDown;
+    private bool healReady;
+    private bool sheeldReady;
     private float timePast = 0f;
     private float timeLifeUpSet = 0f;
     private float timeSheeldSet = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -110,11 +113,14 @@ public class playerManager : MonoBehaviour
         {
             timeLifeUpSet += Time.deltaTime;
             if (timeLifeUpSet >= timeLifeUp)
+                healReady = true;
+                         
+            if(Input.GetKeyDown(KeyCode.A) && healReady)
             {
+                healReady = false;
                 life++;
                 timeLifeUpSet = 0;
             }
-                
         }
     }
 
@@ -126,11 +132,14 @@ public class playerManager : MonoBehaviour
             timeSheeldSet += Time.deltaTime;
 
             if (timeSheeldSet >= timeSheeld)
+                sheeldReady = true;
+               
+            if(Input.GetKeyDown(KeyCode.E))
             {
                 sheeld = true;
+                sheeldReady = false;
                 timeSheeldSet = 0;
-            }
-                
+            }              
         }
     }
 
