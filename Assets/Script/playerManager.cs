@@ -22,6 +22,7 @@ public class playerManager : MonoBehaviour
     private float timePast = 0f;
     private float timeLifeUpSet = 0f;
     private float timeSheeldSet = 0f;
+    public deplacement playerMove;
 
     // Start is called before the first frame update
     void Start()
@@ -41,23 +42,27 @@ public class playerManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.gameObject.tag == "Enemie")
+        if(!playerMove.startDash)
         {
-            Destroy(collision.gameObject);
-            lifeDown = true;
-            timeLifeUpSet = 0;
+            if(collision.collider.gameObject.tag == "Enemie" || collision.collider.gameObject.tag == "BulletEnemie")
+            {
+                Destroy(collision.gameObject);
+                lifeDown = true;
+                timeLifeUpSet = 0;
             
-            if (sheeld)
-                sheeld = false;
-            else
-                life--;
+                if (sheeld)
+                    sheeld = false;
+                else
+                    life--;
+            }
+
+            if(collision.gameObject.tag == "Resource")
+            {
+                resource++;
+                Destroy(collision.gameObject);
+            }
         }
 
-        if(collision.gameObject.tag == "Resource")
-        {
-            resource++;
-            Destroy(collision.gameObject);
-        }
     }
 
     public void LifeManager()

@@ -15,6 +15,9 @@ public class bulletMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector2 (transform.position.x + (speedBullet * Time.deltaTime),transform.position.y);
+        if(gameObject.tag == "Bullet")
+            transform.position = new Vector2 (transform.position.x + (speedBullet * Time.deltaTime),transform.position.y);
+        else
+            transform.position = new Vector2(transform.position.x - (speedBullet * Time.deltaTime), transform.position.y);
     }
 }
