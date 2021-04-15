@@ -736,7 +736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &319552922
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2075,6 +2075,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &875430326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6494646295916639518, guid: 9e6e1ca739f45d041a8ca6e108cbb509,
+    type: 3}
+  m_PrefabInstance: {fileID: 1922404488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &906638409
 GameObject:
   m_ObjectHideFlags: 0
@@ -3958,6 +3964,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5275203593370670286, guid: 9e6e1ca739f45d041a8ca6e108cbb509,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5301135509200418241, guid: 9e6e1ca739f45d041a8ca6e108cbb509,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171001877453725375, guid: 9e6e1ca739f45d041a8ca6e108cbb509,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7025771937282800748, guid: 9e6e1ca739f45d041a8ca6e108cbb509,
         type: 3}
       propertyPath: cam
@@ -3965,9 +3986,19 @@ PrefabInstance:
       objectReference: {fileID: 1320281020}
     - target: {fileID: 7025771937282800748, guid: 9e6e1ca739f45d041a8ca6e108cbb509,
         type: 3}
+      propertyPath: life
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025771937282800748, guid: 9e6e1ca739f45d041a8ca6e108cbb509,
+        type: 3}
       propertyPath: deadPanel
       value: 
       objectReference: {fileID: 434103359}
+    - target: {fileID: 7025771937282800748, guid: 9e6e1ca739f45d041a8ca6e108cbb509,
+        type: 3}
+      propertyPath: healSpawn
+      value: 
+      objectReference: {fileID: 875430326}
     - target: {fileID: 7025771937282800748, guid: 9e6e1ca739f45d041a8ca6e108cbb509,
         type: 3}
       propertyPath: healReadyFB
