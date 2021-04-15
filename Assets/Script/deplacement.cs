@@ -14,8 +14,11 @@ public class deplacement : MonoBehaviour
     public GameObject bullet;
     public GameObject winPanel;
 
+    public soudScript sound;
+
     public float speedDash;
     public float resetDash;
+    public bool startDash;
 
     private bool inZoneTop;
     private bool inZoneBot;
@@ -30,7 +33,6 @@ public class deplacement : MonoBehaviour
     private float timeDash = 0;
     private float timeDashReset = 0;
     private bool dash = true;
-    public bool startDash;
     private bool endDash = false;
     private Vector2 ligneTop;
     private Vector2 ligneLeft;
@@ -50,12 +52,7 @@ public class deplacement : MonoBehaviour
         CamMove();
         NewDash();
         Dash();
-        
-        if (Time.timeScale == 1)
-        {
-            if (Input.GetMouseButtonDown(0))
-                Instantiate(bullet, player.transform.position, Quaternion.identity);
-        }
+        Shoot();
     }
 
     public void Move()
@@ -170,8 +167,11 @@ public class deplacement : MonoBehaviour
         {
             timeDash += Time.deltaTime;
             if (Input.GetKeyDown(KeyCode.Space))
+            {
                 startDash = true;
-
+                AudioSource.PlayClipAtPoint(sound.dash, transform.position);
+            }
+                
             if (startDash)
             {
                 if (inZoneLeft)
@@ -206,8 +206,7 @@ public class deplacement : MonoBehaviour
                 timeDash = 0;
                 endDash = true;
                 //startDash = false;
-            }
-                           
+            }                          
         }
     }
 
@@ -217,6 +216,18 @@ public class deplacement : MonoBehaviour
         {
             Time.timeScale = 0;
             winPanel.SetActive(true);
+        }
+    }
+
+    public void Shoot()
+    {
+        if (Time.timeScale == 1)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                AudioSource.PlayClipAtPoint(sound.shoot, transform.position);
+                Instantiate(bullet, player.transform.position, Quaternion.identity);
+            }
         }
     }
 }

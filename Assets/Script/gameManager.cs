@@ -11,6 +11,7 @@ public class gameManager : MonoBehaviour
 
     public string sceneGame;
     public string mainMenuScene;
+    public soudScript sound;
 
     // Start is called before the first frame update
     void Start()
@@ -36,22 +37,26 @@ public class gameManager : MonoBehaviour
 
     public void PlayOnPause()
     {
+        AudioSource.PlayClipAtPoint(sound.botton, transform.position);
         Time.timeScale = 1;
         pausePanel.SetActive(false);
     }
 
     public void RestartGame()
-    {    
+    {
+        AudioSource.PlayClipAtPoint(sound.botton, transform.position);
         SceneManager.LoadScene(sceneGame);
     }
 
     public void MainMenu()
     {
+        AudioSource.PlayClipAtPoint(sound.botton, transform.position);
         SceneManager.LoadScene(mainMenuScene);
     }
 
     public void CloseGame()
     {
+        AudioSource.PlayClipAtPoint(sound.botton, transform.position);
         Application.Quit();
     }
 }
