@@ -19,7 +19,7 @@ public class Wave : MonoBehaviour
 
     [HideInInspector] public WaveManager waveManager;
 
-    [Range(-9f, 9f)] public float xWaveStart = 0f;
+    [Range(0f, 9f)] public float xWaveStart = 0f;
     public float cameraTransitionSpeed = 2f;
     [Space]
     public WaveStep[] steps;
@@ -88,7 +88,7 @@ public class Wave : MonoBehaviour
         foreach (enemie enemie in steps[currentStepIndex].enemies)
         {
             enemie.gameObject.SetActive(true);
-            // enemie.GoToStartPos();
+            enemie.StartGoToStartPos();
         }
 
         currentStepIndex++;
