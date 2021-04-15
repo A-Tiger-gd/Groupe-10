@@ -33,6 +33,11 @@ public class deplacement : MonoBehaviour
     private Vector2 direction;
     private Vector2 lastDirection;
 
+    private void Awake()
+    {
+        sound = FindObjectOfType<soudScript>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -140,7 +145,9 @@ public class deplacement : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                AudioSource.PlayClipAtPoint(sound.shoot, transform.position);
+                if (sound.shoot != null)
+                    AudioSource.PlayClipAtPoint(sound.shoot, transform.position);
+
                 Instantiate(bullet, player.transform.position, Quaternion.identity);
             }
         }
