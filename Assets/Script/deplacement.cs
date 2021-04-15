@@ -132,7 +132,7 @@ public class deplacement : MonoBehaviour
 
     public void YouAreWin()
     {
-        if (Vector2.Dot(ligneLeft, new Vector2(player.transform.position.x, player.transform.position.y) - new Vector2(winRepaire.transform.position.x, winRepaire.transform.position.y)) < 0)
+        if (player.transform.position.x >= winRepaire.transform.position.x)
         {
             Time.timeScale = 0;
             winPanel.SetActive(true);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class enemie : MonoBehaviour
 {
     private bool canMove = false;
+    [HideInInspector] public bool canShoot = true;
     private Vector3 startPos = Vector3.zero;
 
     public GameObject[] repaires;
@@ -12,9 +13,6 @@ public class enemie : MonoBehaviour
 
     public float speed;
     public float speedLeft;
-
-    public bool inZoneTop;
-    public bool inZoneBot;
 
     public Vector3 direction;
     public float reset;
@@ -40,31 +38,16 @@ public class enemie : MonoBehaviour
     {
         if (canMove)
         {
-            ShootEnemie();
-            EnemiesInZone();
+            if (canShoot)
+                ShootEnemie();
+
             EnemieMovement();
         }
     }
 
-    public void EnemiesInZone()
-    {
-        /*ligneTop = repaires[0].transform.position - repaires[1].transform.position;
-
-        if (Vector2.Dot(ligneTop, new Vector2(transform.position.x, transform.position.y) - new Vector2(repaires[1].transform.position.x, repaires[1].transform.position.y)) > 0)
-            inZoneTop = true;
-        else
-            inZoneTop = false;
-
-        if (Vector2.Dot(ligneTop, new Vector2(transform.position.x, transform.position.y) - new Vector2(repaires[0].transform.position.x, repaires[0].transform.position.y)) < 0)
-            inZoneBot = true;
-        else
-            inZoneBot = false;*/
-    }
     
     public void EnemieMovement ()
     {
-        
-
         if(timeReset >= reset)
         {
             direction.x = Random.Range(-1, 2);
@@ -93,21 +76,6 @@ public class enemie : MonoBehaviour
                 transform.position = nVec;
             }
         }
-
-        /*if (direction == 0 && inZoneTop )
-            transform.position = new Vector2(transform.position.x, transform.position.y + (speed * Time.deltaTime));
-
-        if (direction == 1 && inZoneBot )
-            transform.position = new Vector2(transform.position.x, transform.position.y - (speed * Time.deltaTime));
-        
-        if(direction == 2 && !back)// || Vector2.Dot(repaires[0].transform.position - new Vector3(transform.position.x, repaires[0].transform.position.y), new Vector2(transform.position.x, transform.position.y) - new Vector2(repaires[0].transform.position.x, repaires[0].transform.position.y)) > 0 )
-            transform.position = new Vector2(transform.position.x - (speedLeft * Time.deltaTime), transform.position.y);
-
-        /*if(direction == 3 && !back/*&& Vector2.Dot(repaires[0].transform.position - new Vector3(transform.position.x, repaires[0].transform.position.y), new Vector2(transform.position.x, transform.position.y) - new Vector2(player.transform.position.x, repaires[0].transform.position.y)) > 0)
-            transform.position = new Vector2(transform.position.x + (speedLeft * Time.deltaTime), transform.position.y);*/
-
-
-
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -150,6 +118,7 @@ public class enemie : MonoBehaviour
         }
 
         canMove = true;
+        canShoot = true;
     }
 
     private void OnDrawGizmosSelected()

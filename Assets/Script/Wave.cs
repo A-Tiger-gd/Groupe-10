@@ -12,7 +12,7 @@ public class Wave : MonoBehaviour
     }
 
     private deplacement player;
-    private bool waveStarted = false;
+    [HideInInspector] public bool waveStarted = false;
     private bool camMove = false;
     private Vector3 sCam;
     private bool canStartNextStep = true;
@@ -140,6 +140,12 @@ public class Wave : MonoBehaviour
         {
             enemie.gameObject.SetActive(true);
             enemie.StartGoToStartPos();
+
+            if (currentStepIndex == 0)
+            {
+                enemie.canShoot = false;
+            }
+
         }
 
         currentStepIndex++;
