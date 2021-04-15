@@ -167,6 +167,8 @@ MonoBehaviour:
   winRepaire: {fileID: 1618497724}
   bullet: {fileID: 930476201326331539, guid: 0f8dacf6c74a17146b7736bc87c4870c, type: 3}
   winPanel: {fileID: 1563172800}
+  dashReady: {fileID: 0}
+  dashNotReady: {fileID: 0}
   sound: {fileID: 0}
   speedDash: 20
   resetDash: 5
@@ -307,6 +309,10 @@ MonoBehaviour:
   - {fileID: 2063800700}
   - {fileID: 1521342970}
   sheeldFeedBack: {fileID: 1032874423}
+  sheeldNotReady: {fileID: 0}
+  sheeldReadyFB: {fileID: 0}
+  healNotReady: {fileID: 0}
+  healReadyFB: {fileID: 0}
   playerMove: {fileID: 193651180}
 --- !u!1 &356526262
 GameObject:
@@ -1946,6 +1952,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: deadPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336954820426952224, guid: 326d3d8588586b240a5878791b1bde9c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1336954820592515561, guid: 326d3d8588586b240a5878791b1bde9c,
         type: 3}

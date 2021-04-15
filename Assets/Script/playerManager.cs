@@ -19,11 +19,14 @@ public class playerManager : MonoBehaviour
     public GameObject sheeldReadyFB;
     public GameObject healNotReady;
     public GameObject healReadyFB;
+    public GameObject healSpawn;
 
     private bool sheeld;
     private bool lifeDown;
     private bool healReady;
     private bool sheeldReady;
+    private bool AnimHeal;
+    private float timeAnimHeal;
     private float timePast = 0f;
     private float timeLifeUpSet = 0f;
     private float timeSheeldSet = 0f;
@@ -132,6 +135,18 @@ public class playerManager : MonoBehaviour
                 healReady = false;
                 life++;
                 timeLifeUpSet = 0;
+                AnimHeal = true;
+            }
+
+        }
+
+        if(AnimHeal == true)
+        {
+            timeAnimHeal += Time.deltaTime;
+            if(timeAnimHeal>=1)
+            {
+                AnimHeal = false;
+                timeAnimHeal = 0;
             }
         }
     }
@@ -158,6 +173,7 @@ public class playerManager : MonoBehaviour
 
     public void GestionAction()
     {
+        healSpawn.SetActive(AnimHeal);
         healReadyFB.SetActive(healReady);
         healNotReady.SetActive(!healReady);
         sheeldReadyFB.SetActive(sheeldReady);

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 5f6b1f176889da04aad929f132dceb68
+  - enabled: 1
+    path: Assets/Scenes/MarieUI.unity
+    guid: 2f80e71560c7b48408f9404956ed5f69
   m_configObjects: {}
