@@ -15,6 +15,11 @@ public class playerManager : MonoBehaviour
     public GameObject[] feedBackLife;
     public GameObject sheeldFeedBack;
 
+    public GameObject sheeldNotReady;
+    public GameObject sheeldReadyFB;
+    public GameObject healNotReady;
+    public GameObject healReadyFB;
+
     private bool sheeld;
     private bool lifeDown;
     private bool healReady;
@@ -38,6 +43,7 @@ public class playerManager : MonoBehaviour
         FeedBackLifeManager();
         LifeUp();
         ShackCam();
+        GestionAction();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -148,6 +154,14 @@ public class playerManager : MonoBehaviour
                 timeSheeldSet = 0;
             }              
         }
+    }
+
+    public void GestionAction()
+    {
+        healReadyFB.SetActive(healReady);
+        healNotReady.SetActive(!healReady);
+        sheeldReadyFB.SetActive(sheeldReady);
+        sheeldNotReady.SetActive(!sheeldReady);
     }
 
 }

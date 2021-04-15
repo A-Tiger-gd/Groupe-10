@@ -16,6 +16,9 @@ public class deplacement : MonoBehaviour
     public GameObject bullet;
     public GameObject winPanel;
 
+    public GameObject dashReady;
+    public GameObject dashNotReady;
+
     public soudScript sound;
 
     public float speedDash;
@@ -48,6 +51,7 @@ public class deplacement : MonoBehaviour
             NewDash();
             Dash();
             Shoot();
+            GestionFBDash();
             if (!fixedCam)
             {
                 CamMove();
@@ -151,6 +155,12 @@ public class deplacement : MonoBehaviour
                 Instantiate(bullet, player.transform.position, Quaternion.identity);
             }
         }
+    }
+
+    public void GestionFBDash()
+    {
+        dashReady.SetActive(dash);
+        dashNotReady.SetActive(!dash);
     }
 }
 
