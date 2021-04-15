@@ -107,7 +107,7 @@ public class deplacement : MonoBehaviour
         if (dash)
         {
             timeDash += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 startDash = true;
                 AudioSource.PlayClipAtPoint(sound.dash, transform.position);
@@ -147,7 +147,7 @@ public class deplacement : MonoBehaviour
     {
         if (Time.timeScale == 1)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (sound.shoot != null)
                     AudioSource.PlayClipAtPoint(sound.shoot, transform.position);

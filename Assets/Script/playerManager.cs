@@ -126,7 +126,7 @@ public class playerManager : MonoBehaviour
             if (timeLifeUpSet >= timeLifeUp)
                 healReady = true;
                          
-            if(Input.GetKeyDown(KeyCode.A) && healReady)
+            if(Input.GetKeyDown(KeyCode.DownArrow) && healReady)
             {
                 AudioSource.PlayClipAtPoint(playerMove.sound.heal, transform.position);
                 healReady = false;
@@ -146,7 +146,7 @@ public class playerManager : MonoBehaviour
             if (timeSheeldSet >= timeSheeld)
                 sheeldReady = true;
                
-            if(Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 AudioSource.PlayClipAtPoint(playerMove.sound.sheeld, transform.position);
                 sheeld = true;
