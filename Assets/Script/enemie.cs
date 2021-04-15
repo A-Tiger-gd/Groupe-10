@@ -23,8 +23,7 @@ public class enemie : MonoBehaviour
     private float timeShoot;
     private float timeShootSet;
     private GameObject player;
-    public bool back;
-    private Vector2 ligneTop;
+    public float playerRange = 1f;
     [Space]
     public Vector2 goStartPosition = Vector2.zero;
 
@@ -33,6 +32,7 @@ public class enemie : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         timeShoot = Random.Range(1f, timeMaxShoot);
+        timeReset = reset - Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -74,14 +74,13 @@ public class enemie : MonoBehaviour
 
         timeReset += Time.deltaTime;
 
-        if (Vector2.Dot(repaires[0].transform.position + new Vector3(transform.position.x, repaires[0].transform.position.y), new Vector2(transform.position.x, transform.position.y) - new Vector2(player.transform.position.x, repaires[0].transform.position.y)) < 0)// && Vector2.Dot(repaires[0].transform.position - new Vector3(transform.position.x, repaires[0].transform.position.y), new Vector2(transform.position.x, transform.position.y) - new Vector2(repaires[0].transform.position.x, repaires[0].transform.position.y)) > 0)
+        if (transform.position.x < player.transform.position.x + playerRange)
         {
-            back = true;
-            transform.position = new Vector2(transform.position.x + (speedLeft * 2 * Time.deltaTime), transform.position.y);
+            transform.position = new Vector2(transform.position.x + (speedLeft * Time.deltaTime), transform.position.y);
+            direction.x = 1;
         }
         else
         {
-            back = false;
             transform.position = transform.position + direction * speed * Time.deltaTime;
 
             if (transform.position.y > repaires[0].transform.position.y || transform.position.y < repaires[1].transform.position.y)
@@ -144,14 +143,11 @@ public class enemie : MonoBehaviour
 
         while (Vector3.Distance(transform.position, startPos + (Vector3)goStartPosition) > 0.1f)
         {
-            Debug.Log(gameObject + ", " +  (Vector3.Distance(transform.position, startPos + (Vector3)goStartPosition) > 0.1f));
             Vector3 nDir = (transform.position + (Vector3)goStartPosition - startPos).normalized;
-            transform.position = transform.position + nDir * speed * Time.deltaTime;
+            transform.position = transform.position + nDir * speed * 2f * Time.deltaTime;
 
             yield return null;
         }
-
-        Debug.Log(gameObject + ", " + (Vector3.Distance(transform.position, startPos + (Vector3)goStartPosition) > 0.1f));
 
         canMove = true;
     }

@@ -166,6 +166,7 @@ MonoBehaviour:
   winRepaire: {fileID: 1618497724}
   bullet: {fileID: 930476201326331539, guid: 0f8dacf6c74a17146b7736bc87c4870c, type: 3}
   winPanel: {fileID: 1563172800}
+  sound: {fileID: 0}
   speedDash: 20
   resetDash: 5
   startDash: 0
@@ -304,7 +305,7 @@ MonoBehaviour:
   - {fileID: 2063800700}
   - {fileID: 1521342970}
   sheeldFeedBack: {fileID: 1032874423}
-  playerMove: {fileID: 0}
+  playerMove: {fileID: 193651180}
 --- !u!1 &317491827
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +459,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: enemie
+      objectReference: {fileID: 0}
+    - target: {fileID: 8644220537146522809, guid: 453771dca3b156e41b85263208a47c34,
+        type: 3}
+      propertyPath: speedLeft
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8644220537146522809, guid: 453771dca3b156e41b85263208a47c34,
         type: 3}
@@ -979,7 +985,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &546699506
 GameObject:
@@ -1668,6 +1674,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8644220537146522809, guid: 453771dca3b156e41b85263208a47c34,
         type: 3}
+      propertyPath: speedLeft
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8644220537146522809, guid: 453771dca3b156e41b85263208a47c34,
+        type: 3}
       propertyPath: goStartPosition.x
       value: -1.43
       objectReference: {fileID: 0}
@@ -1957,6 +1968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveManager: {fileID: 0}
+  repaires: []
   xWaveStart: 6
   cameraTransitionSpeed: 2
   steps:
@@ -1982,7 +1994,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1118489087
 Transform:
   m_ObjectHideFlags: 0
@@ -1995,7 +2007,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1211259240
 GameObject:
@@ -2338,6 +2350,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f96b9c76bfb96447ba0bf2890088034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  repaires:
+  - {fileID: 1506353834}
+  - {fileID: 529118067}
+  - {fileID: 356526264}
+  - {fileID: 2090789898}
+  - {fileID: 1118489087}
   currentWaveIndex: 0
 --- !u!4 &1324230737
 Transform:
@@ -2972,7 +2990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618497724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30, y: -5, z: -10}
+  m_LocalPosition: {x: 41.42, y: -5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3012,6 +3030,7 @@ MonoBehaviour:
   checkLife: {fileID: 193651185}
   sceneGame: Nicolas
   mainMenuScene: MainMenu
+  sound: {fileID: 0}
 --- !u!4 &1685519407
 Transform:
   m_ObjectHideFlags: 0
@@ -3649,7 +3668,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2090789898
 Transform:
   m_ObjectHideFlags: 0

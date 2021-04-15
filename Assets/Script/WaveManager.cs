@@ -6,6 +6,7 @@ public class WaveManager : MonoBehaviour
 {
     private Wave[] waves;
 
+    [SerializeField] private Transform[] repaires;
     [SerializeField] private int currentWaveIndex = 0;
 
     private void Awake()
@@ -16,6 +17,7 @@ public class WaveManager : MonoBehaviour
         {
             wave.gameObject.SetActive(false);
             wave.waveManager = this;
+            wave.repaires = repaires;
         }
 
         if (currentWaveIndex < waves.Length)

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Wave : MonoBehaviour
@@ -9,15 +8,17 @@ public class Wave : MonoBehaviour
     {
         public float spawnTime;
         public enemie[] enemies;
+        public bool beated;
     }
 
-    private GameObject player;
+    private deplacement player;
     private bool waveStarted = false;
     private bool camMove = false;
     private Vector3 sCam;
     private bool canStartNextStep = true;
 
     [HideInInspector] public WaveManager waveManager;
+    [HideInInspector] public Transform[] repaires;
 
     [Range(0f, 9f)] public float xWaveStart = 0f;
     public float cameraTransitionSpeed = 2f;
@@ -27,7 +28,7 @@ public class Wave : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = FindObjectOfType<deplacement>();
 
         foreach (WaveStep waveStep in steps)
         {
@@ -52,31 +53,81 @@ public class Wave : MonoBehaviour
             waveStarted = true;
             camMove = true;
             sCam = Camera.main.transform.position;
+            player.canMove = false;
+            player.fixedCam = true;
         }
 
-        if (camMove && Camera.main.transform.position.x < transform.position.x)
+        if (camMove && Camera.main.transform.position.x < transform.position.x - 0.1f)
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, sCam.y, sCam.z), Time.deltaTime * 2f);
+            Vector3 nVec = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, sCam.y, sCam.z), Time.deltaTime * 2f);
+            Camera.main.transform.position = nVec;
         }
-        else if (camMove && Camera.main.transform.position.x >= transform.position.x)
+        else if (camMove && Camera.main.transform.position.x >= transform.position.x - 0.1f)
         {
             camMove = false;
             Camera.main.transform.position = new Vector3(transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
+
+            float distance = Camera.main.transform.position.x - sCam.x;
+
+            for (int i = 0; i < repaires.Length; ++i)
+            {
+                repaires[i].position = new Vector2(repaires[i].position.x + distance, repaires[i].position.y);
+            }
+
+            player.canMove = true;
         }
 
         /* Wave already started */
-        if (waveStarted && canStartNextStep)
+        if (waveStarted && canStartNextStep && currentStepIndex < steps.Length)
         {
-            if (currentStepIndex >= steps.Length)
+            StartCoroutine(SpawnNextWave());
+        }
+
+        if (waveStarted)
+        {
+            if (IsWaveEnded())
             {
+                player.fixedCam = false;
                 waveManager.NextWave();
+            } 
+        }
+
+    }
+
+    private bool IsWaveEnded()
+    {
+        bool isWaveEnded = false;
+        bool nBreak = false;
+
+        for (int i = 0; i < steps.Length; i++)
+        {
+            if (!steps[i].beated)
+            {
+                foreach (enemie enemie in steps[i].enemies)
+                {
+                    if (enemie != null)
+                    {
+                        nBreak = true;
+                        isWaveEnded = false;
+                        break;
+                    }
+                }
+
+                if (!nBreak)
+                {
+                    steps[i].beated = true;
+                }
             }
             else
             {
-                StartCoroutine(SpawnNextWave());
+                isWaveEnded = true;
             }
+
+            if (nBreak)
+                break;
         }
 
+        return isWaveEnded;
     }
 
     IEnumerator SpawnNextWave()
