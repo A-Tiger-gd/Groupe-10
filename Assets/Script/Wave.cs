@@ -88,7 +88,7 @@ public class Wave : MonoBehaviour
         foreach (enemie enemie in steps[currentStepIndex].enemies)
         {
             enemie.gameObject.SetActive(true);
-            StartCoroutine(enemie.GoToStartPos());
+            enemie.StartGoToStartPos();
         }
 
         currentStepIndex++;

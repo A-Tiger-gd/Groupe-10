@@ -123,7 +123,6 @@ public class enemie : MonoBehaviour
 
     public void ShootEnemie()
     {
-        
         timeShootSet += Time.deltaTime;
 
         if(timeShootSet>=timeShoot)
@@ -134,17 +133,25 @@ public class enemie : MonoBehaviour
         }
     }
 
-    public IEnumerator GoToStartPos()
+    public void StartGoToStartPos()
+    {
+        StartCoroutine(GoToStartPos());
+    }
+
+    private IEnumerator GoToStartPos()
     {
         startPos = transform.position;
 
         while (Vector3.Distance(transform.position, startPos + (Vector3)goStartPosition) > 0.1f)
         {
+            Debug.Log(gameObject + ", " +  (Vector3.Distance(transform.position, startPos + (Vector3)goStartPosition) > 0.1f));
             Vector3 nDir = (transform.position + (Vector3)goStartPosition - startPos).normalized;
             transform.position = transform.position + nDir * speed * Time.deltaTime;
 
             yield return null;
         }
+
+        Debug.Log(gameObject + ", " + (Vector3.Distance(transform.position, startPos + (Vector3)goStartPosition) > 0.1f));
 
         canMove = true;
     }
