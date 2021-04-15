@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e00d8549c0071459023f6232edf370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
   player: {fileID: 193651179}
   speed: 5
   cam: {fileID: 519420028}
@@ -170,6 +171,7 @@ MonoBehaviour:
   speedDash: 20
   resetDash: 5
   startDash: 0
+  fixedCam: 0
 --- !u!212 &193651181
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2643,6 +2645,7 @@ MonoBehaviour:
   heal: {fileID: 0}
   sheeld: {fileID: 0}
   enemy: {fileID: 0}
+  botton: {fileID: 0}
 --- !u!4 &1476390472
 Transform:
   m_ObjectHideFlags: 0
@@ -3270,6 +3273,7 @@ MonoBehaviour:
   checkLife: {fileID: 193651185}
   sceneGame: Nicolas
   mainMenuScene: MainMenu
+  sound: {fileID: 0}
 --- !u!4 &1685519407
 Transform:
   m_ObjectHideFlags: 0
