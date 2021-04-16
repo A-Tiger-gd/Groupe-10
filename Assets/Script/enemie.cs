@@ -25,6 +25,7 @@ public class enemie : MonoBehaviour
     [Space]
     public Vector2 goStartPosition = Vector2.zero;
 
+
     // Start is called before the first frame update
     void Start()
     {
