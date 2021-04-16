@@ -4842,6 +4842,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315440608}
   m_CullTransparentMesh: 0
+--- !u!95 &1361025292 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2585412699146625532, guid: 3ed5250ca5f8a154790e0bb735c5b39d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7874198414764505148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1426626050
 GameObject:
   m_ObjectHideFlags: 0
@@ -7257,7 +7263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143932207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30, y: -5, z: -10}
+  m_LocalPosition: {x: 55.93, y: -5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7405,6 +7411,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1195378078}
+    - target: {fileID: 7874198414574321078, guid: 3ed5250ca5f8a154790e0bb735c5b39d,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1361025292}
     - target: {fileID: 7874198414574321078, guid: 3ed5250ca5f8a154790e0bb735c5b39d,
         type: 3}
       propertyPath: winPanel
