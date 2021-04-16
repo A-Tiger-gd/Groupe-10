@@ -1618,6 +1618,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &363859437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 363859438}
+  m_Layer: 0
+  m_Name: repaireEnemyStayHere
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &363859438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363859437}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.040001, y: -5, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 311108963}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &378746442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,6 +2061,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1952033716}
   m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &513563195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 513563196}
+  m_Layer: 0
+  m_Name: repaireEnemyStayHere (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &513563196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513563195}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.98, y: -5, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 900226399}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &547651247
 GameObject:
@@ -2937,6 +2997,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8738638994251003250, guid: 23422da9f381dfa46ac9a23cae31a0b6,
         type: 3}
+      propertyPath: repaireEnemy
+      value: 
+      objectReference: {fileID: 363859437}
+    - target: {fileID: 8738638994251003250, guid: 23422da9f381dfa46ac9a23cae31a0b6,
+        type: 3}
       propertyPath: steps.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -3639,6 +3704,7 @@ Transform:
   - {fileID: 1680092802}
   - {fileID: 844658255}
   - {fileID: 404051817}
+  - {fileID: 513563196}
   m_Father: {fileID: 1032076985}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3670,6 +3736,7 @@ MonoBehaviour:
     - {fileID: 404051819}
     beated: 0
   currentStepIndex: 0
+  repaireEnemy: {fileID: 0}
 --- !u!1 &941586673
 GameObject:
   m_ObjectHideFlags: 0
