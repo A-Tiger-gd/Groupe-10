@@ -10,6 +10,9 @@ public class enemie : MonoBehaviour
 
     public GameObject[] repaires;
     public GameObject bulletEnemie;
+    public GameObject spawnBulletLocation;
+    public GameObject particul;
+    public GameObject repaireEnemy;
 
     public float speed;
     public float speedLeft;
@@ -76,6 +79,16 @@ public class enemie : MonoBehaviour
 
                 transform.position = nVec;
             }
+
+            if(transform.position.x > repaireEnemy.transform.position.x)
+            {
+                Vector3 nVec;
+                nVec.x = repaireEnemy.transform.position.x;
+                nVec.y = transform.position.y;
+                nVec.z = transform.position.z;
+
+                transform.position = nVec;
+            }
         }
     }
 
@@ -85,6 +98,7 @@ public class enemie : MonoBehaviour
         {
             
             Destroy(col.gameObject);
+            Instantiate(particul, transform.position, Quaternion.identity);
             Destroy(this.gameObject);   
         }
     }
@@ -95,7 +109,7 @@ public class enemie : MonoBehaviour
 
         if(timeShootSet>=timeShoot)
         {
-            Instantiate(bulletEnemie, transform.position, Quaternion.identity);
+            Instantiate(bulletEnemie, spawnBulletLocation.transform.position, Quaternion.identity);
             timeShoot = Random.Range(1f, timeMaxShoot);
             timeShootSet = 0;
         }

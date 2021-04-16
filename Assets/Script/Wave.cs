@@ -26,6 +26,8 @@ public class Wave : MonoBehaviour
     public WaveStep[] steps;
     public int currentStepIndex = 0;
 
+    public GameObject repaireEnemy;
+
     private void Awake()
     {
         player = FindObjectOfType<deplacement>();
@@ -35,6 +37,7 @@ public class Wave : MonoBehaviour
             foreach (enemie enemie in waveStep.enemies)
             {
                 enemie.gameObject.SetActive(false);
+                enemie.repaireEnemy = repaireEnemy;
             }
         }
     }
