@@ -7,6 +7,7 @@ public class gameManager : MonoBehaviour
 {
     public GameObject pausePanel;
     public GameObject deadPanel;
+    public GameObject optionPanel;
     public playerManager checkLife;
 
     public string sceneGame;
@@ -58,5 +59,17 @@ public class gameManager : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(sound.botton, transform.position);
         Application.Quit();
+    }
+
+    public void OpenOptionPanel()
+    {
+        AudioSource.PlayClipAtPoint(sound.botton, transform.position);
+        optionPanel.SetActive(true);
+    }
+
+    public void CloseOptionPanel()
+    {
+        AudioSource.PlayClipAtPoint(sound.botton, transform.position);
+        optionPanel.SetActive(false);
     }
 }
