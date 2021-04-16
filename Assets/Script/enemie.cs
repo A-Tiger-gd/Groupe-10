@@ -36,6 +36,7 @@ public class enemie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        StartGoToStartPos();
         if (canMove)
         {
             if (canShoot)

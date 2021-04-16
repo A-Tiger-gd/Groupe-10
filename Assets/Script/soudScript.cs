@@ -23,6 +23,6 @@ public class soudScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GameObject.Find("One shot audio").transform.position = transform.position;
     }
 }
