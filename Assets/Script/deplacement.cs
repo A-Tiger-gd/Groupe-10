@@ -21,6 +21,8 @@ public class deplacement : MonoBehaviour
 
     public soudScript sound;
 
+    public Animator anim;
+
     public float speedDash;
     public float resetDash;
     public bool startDash;
@@ -41,6 +43,10 @@ public class deplacement : MonoBehaviour
         sound = FindObjectOfType<soudScript>();
     }
 
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -120,10 +126,13 @@ public class deplacement : MonoBehaviour
                 Vector3 clampVec = new Vector3(Mathf.Clamp(transform.position.x, repaires[1].transform.position.x, repaires[0].transform.position.x + 0.5f), Mathf.Clamp(transform.position.y, repaires[0].transform.position.y, repaires[2].transform.position.y));
                 transform.position = clampVec;
 
+                anim.SetBool("isDashRight", true);
+
                 if (timeDash > 0.3f)
                 {
                     dash = false;
                     startDash = false;
+                    anim.SetBool("isDashRight", false);
                 }
             }
             else
@@ -153,6 +162,8 @@ public class deplacement : MonoBehaviour
                     AudioSource.PlayClipAtPoint(sound.shoot, transform.position);
 
                 Instantiate(bullet, player.transform.position, Quaternion.identity);
+
+                anim.SetBool("isPlaying", true);
             }
         }
     }
