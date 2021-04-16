@@ -21,7 +21,7 @@ public class deplacement : MonoBehaviour
 
     public soudScript sound;
 
-    public Animator anim;
+    private Animator anim;
 
     public float speedDash;
     public float resetDash;
@@ -37,16 +37,14 @@ public class deplacement : MonoBehaviour
     private Vector2 ligneLeft;
     private Vector2 direction;
     private Vector2 lastDirection;
+    private bool canShoot = true;
 
     private void Awake()
     {
         sound = FindObjectOfType<soudScript>();
-    }
-
-    private void Start()
-    {
         anim = GetComponent<Animator>();
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -56,8 +54,14 @@ public class deplacement : MonoBehaviour
             Move();
             NewDash();
             Dash();
-            Shoot();
+
+            if (canShoot && Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                StartCoroutine(Shooting());
+            }
+
             GestionFBDash();
+
             if (!fixedCam)
             {
                 CamMove();
@@ -74,12 +78,16 @@ public class deplacement : MonoBehaviour
 
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
+        direction.Normalize();
 
         Vector3 addVec = direction * speed * Time.deltaTime;
         transform.position += addVec;
 
         Vector3 clampVec = new Vector3(Mathf.Clamp(transform.position.x, repaires[1].transform.position.x, repaires[0].transform.position.x + 0.5f), Mathf.Clamp(transform.position.y, repaires[0].transform.position.y, repaires[2].transform.position.y));
         transform.position = clampVec;
+
+        anim.SetFloat("Speed", direction.magnitude);
+        anim.SetFloat("Horizontal", direction.x);
     }
 
 
@@ -152,20 +160,20 @@ public class deplacement : MonoBehaviour
         }
     }
 
-    public void Shoot()
+    IEnumerator Shooting()
     {
-        if (Time.timeScale == 1)
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if (sound.shoot != null)
-                    AudioSource.PlayClipAtPoint(sound.shoot, transform.position);
+        canShoot = false;
 
-                Instantiate(bullet, player.transform.position, Quaternion.identity);
+        if (sound.shoot != null)
+            AudioSource.PlayClipAtPoint(sound.shoot, transform.position);
 
-                anim.SetBool("isPlaying", true);
-            }
-        }
+        Instantiate(bullet, player.transform.position, Quaternion.identity);
+
+        anim.SetTrigger("Attack");
+
+        yield return new WaitForSeconds(.4f);
+
+        canShoot = true;
     }
 
     public void GestionFBDash()
