@@ -64,6 +64,7 @@ public class gameManager : MonoBehaviour
     public void OpenOptionPanel()
     {
         AudioSource.PlayClipAtPoint(sound.botton, transform.position);
+        pausePanel.SetActive(false);
         optionPanel.SetActive(true);
     }
 
@@ -71,5 +72,6 @@ public class gameManager : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(sound.botton, transform.position);
         optionPanel.SetActive(false);
+        pausePanel.SetActive(true);
     }
 }
