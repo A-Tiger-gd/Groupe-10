@@ -16,13 +16,7 @@ public class soudScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioSource.PlayClipAtPoint(music, transform.position);
-        //AudioSource.PlayClipAtPoint(soundAngry, transform.position);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        GameObject.Find("One shot audio").transform.position = transform.position;
+        audioForMusic.clip = music;
+        audioForMusic.Play();
     }
 }

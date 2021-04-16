@@ -67,6 +67,11 @@ public class deplacement : MonoBehaviour
                 CamMove();
             }
         }
+        else
+        {
+            anim.SetFloat("Speed", 0f);
+            anim.SetFloat("Horizontal", 0f);
+        }
     }
 
     public void Move()
@@ -156,6 +161,7 @@ public class deplacement : MonoBehaviour
         if (player.transform.position.x >= winRepaire.transform.position.x)
         {
             Time.timeScale = 0;
+            canMove = false;
             winPanel.SetActive(true);
         }
     }
